@@ -16,7 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from lab_apps.views import home, current_datetime, four_hours_ahead, four_hours_before
 
 urlpatterns = [
+    path('', home),
     path('admin/', admin.site.urls),
+    path('cdt/', current_datetime),
+    path('fha/', four_hours_ahead),
+    path('fhb/', four_hours_before)
 ]
