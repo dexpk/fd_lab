@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from lab_apps.views import Home, current_datetime, four_hours_ahead, four_hours_before, showlist, home, about, contact, reg, add_project, StudentDetailView, StudentListView
+from lab_apps.views import Home, current_datetime, four_hours_ahead, four_hours_before, showlist, home, about, contact, reg, add_project, StudentDetailView, StudentListView, construct_csv_from_model
 
 urlpatterns = [
     path('', Home),
@@ -32,4 +32,5 @@ urlpatterns = [
     path('add_project/', add_project),
     path('student_list/', StudentListView.as_view()),
     path('student_detail/<int:pk>/', StudentDetailView.as_view()),
+    path('csv/', construct_csv_from_model),
 ]

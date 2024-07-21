@@ -1,3 +1,4 @@
+import csv
 from django.views import generic
 from lab_apps.models import ProjectReg
 from lab_apps.models import Course, Student
@@ -87,3 +88,16 @@ class StudentListView(generic.ListView):
 class StudentDetailView(generic.DetailView):
     model = Student
     template_name = "student_detail.html"
+
+
+def construct_csv_from_model(request):
+    courses = Course.object.all()
+    response = HttpResponse(content_type="text/csv")
+    response['Content-Dispositon'] = 'attachment;filename="course_data.csv"'
+    writer = csv.writter(response)
+    writer.write(response)
+    writer.writerow(["CourseName", "CourseCode", "Credits"])
+    for course in courses:
+        writer.writerow(
+            [course.course_name, course.course_code, course.course_credits])
+    return response
